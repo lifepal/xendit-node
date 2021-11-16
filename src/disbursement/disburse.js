@@ -19,6 +19,10 @@ function create(data) {
       data.xIdempotencyKey,
     );
 
+    if (data && data.forUserID) {
+      headers['for-user-id'] = data.forUserID;
+    }
+
     fetchWithHTTPErr(`${this.API_ENDPOINT}/disbursements`, {
       method: 'POST',
       headers,

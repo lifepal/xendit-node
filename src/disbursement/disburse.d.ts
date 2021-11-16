@@ -8,6 +8,7 @@ interface DisbursementItem {
   emailTo?: string[];
   emailCC?: string[];
   emailBCC?: string[];
+  forUserID?: string;
 }
 
 export function create(data: DisbursementItem): Promise<object>;
