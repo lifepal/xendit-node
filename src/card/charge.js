@@ -5,12 +5,18 @@ function createCharge(data) {
     const compulsoryFields = ['tokenID', 'externalID', 'amount'];
     Validate.rejectOnMissingFields(compulsoryFields, data, reject);
 
-    fetchWithHTTPErr(`${this.API_ENDPOINT}/credit_card_charges`, {
-      method: 'POST',
-      headers: {
+    const headers = {
         Authorization: Auth.basicAuthHeader(this.opts.secretKey),
         'Content-Type': 'application/json',
-      },
+      };
+
+    if (data && data.forUserID) {
+      headers['for-user-id'] = data.forUserID;
+    }
+
+    fetchWithHTTPErr(`${this.API_ENDPOINT}/credit_card_charges`, {
+      method: 'POST',
+      headers,
       body: JSON.stringify({
         token_id: data.tokenID,
         external_id: data.externalID,

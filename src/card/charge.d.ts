@@ -6,6 +6,7 @@ export function createCharge(data: {
   cardCVN?: string;
   capture?: boolean;
   descriptor?: string;
+  forUserID?: string;
 }): Promise<object>;
 
 export function captureCharge(data: {
