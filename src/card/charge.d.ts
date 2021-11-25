@@ -7,6 +7,7 @@ export function createCharge(data: {
   capture?: boolean;
   descriptor?: string;
   forUserID?: string;
+  installment?: object;
 }): Promise<object>;
 
 export function captureCharge(data: {

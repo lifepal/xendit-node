@@ -25,6 +25,7 @@ function createCharge(data) {
         card_cvn: data.cardCVN,
         capture: data.capture,
         descriptor: data.descriptor,
+        installment: data.installment,
       }),
     })
       .then(resolve)
