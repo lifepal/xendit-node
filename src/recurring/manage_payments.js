@@ -12,12 +12,18 @@ function createPayment(data) {
     ];
     Validate.rejectOnMissingFields(compulsoryFields, data, reject);
 
+    const headers = {
+      Authorization: Auth.basicAuthHeader(this.opts.secretKey),
+      'Content-Type': 'application/json',
+    };
+
+    if (data.forUserID) {
+      headers['for-user-id'] = data.forUserID;
+    }
+
     fetchWithHTTPErr(`${this.API_ENDPOINT}/`, {
       method: 'POST',
-      headers: {
-        Authorization: Auth.basicAuthHeader(this.opts.secretKey),
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify({
         external_id: data.externalID,
         payer_email: data.payerEmail,
