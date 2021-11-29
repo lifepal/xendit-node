@@ -4,8 +4,6 @@ function createPayment(data) {
   return promWithJsErr((resolve, reject) => {
     const compulsoryFields = [
       'externalID',
-      'payerEmail',
-      'description',
       'amount',
       'interval',
       'intervalCount',
@@ -16,10 +14,6 @@ function createPayment(data) {
       Authorization: Auth.basicAuthHeader(this.opts.secretKey),
       'Content-Type': 'application/json',
     };
-
-    if (data.forUserID) {
-      headers['for-user-id'] = data.forUserID;
-    }
 
     fetchWithHTTPErr(`${this.API_ENDPOINT}/`, {
       method: 'POST',

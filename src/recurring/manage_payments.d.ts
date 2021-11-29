@@ -10,8 +10,8 @@ enum Action {
 
 export function createPayment(data: {
   externalID: string;
-  payerEmail: string;
-  description: string;
+  payerEmail?: string;
+  description?: string;
   amount: number;
   interval: Interval;
   intervalCount: number;
